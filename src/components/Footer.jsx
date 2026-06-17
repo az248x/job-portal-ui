@@ -1,4 +1,45 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
+const POLICY_CONTENT = {
+  privacy: {
+    title: "Privacy Policy",
+    body: "We collect only the information needed to match you with jobs. Your data is never sold to third parties. You can request deletion of your account and data at any time by contacting us.",
+  },
+  terms: {
+    title: "Terms of Service",
+    body: "By using JobPortal you agree to use the platform lawfully. Job listings must be genuine. We reserve the right to remove content or accounts that violate these terms.",
+  },
+  cookie: {
+    title: "Cookie Policy",
+    body: "We use essential cookies to keep you logged in and remember your preferences. No third-party tracking or advertising cookies are used.",
+  },
+};
+
+const PolicyTooltip = ({ policyKey }) => {
+  const [visible, setVisible] = useState(false);
+  const { title, body } = POLICY_CONTENT[policyKey];
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+    >
+      <button className="group relative hover:text-white transition-colors duration-300 text-gray-400 text-sm">
+        <span className="relative z-10">{title}</span>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
+      </button>
+      {visible && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-gray-800 border border-gray-700 rounded-xl p-4 shadow-xl z-50 text-left pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700"></div>
+          <p className="text-white font-semibold text-sm mb-1">{title}</p>
+          <p className="text-gray-300 text-xs leading-relaxed">{body}</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Footer = () => {
   return (
@@ -141,18 +182,9 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-400 mb-6 md:mb-0">
-              <a className="group relative hover:text-white transition-colors duration-300">
-                <span className="relative z-10">Privacy Policy</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
-              <a className="group relative hover:text-white transition-colors duration-300">
-                <span className="relative z-10">Terms of Service</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
-              <a className="group relative hover:text-white transition-colors duration-300">
-                <span className="relative z-10">Cookie Policy</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
+              <PolicyTooltip policyKey="privacy" />
+              <PolicyTooltip policyKey="terms" />
+              <PolicyTooltip policyKey="cookie" />
               <Link
                 to="/contact"
                 className="group relative hover:text-white transition-colors duration-300"
