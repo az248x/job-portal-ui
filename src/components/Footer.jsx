@@ -47,6 +47,33 @@ const PolicyTooltip = ({ policyKey }) => {
   );
 };
 
+const ContactTooltip = () => {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+    >
+      <Link
+        to="/contact"
+        className="group relative hover:text-white transition-colors duration-300 text-gray-400 text-sm"
+      >
+        <span className="relative z-10">Contact Us</span>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
+      </Link>
+      {visible && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-gray-800 border border-gray-700 rounded-xl p-4 shadow-xl z-50 text-left pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700"></div>
+          <p className="text-white font-semibold text-sm mb-1">Contact Us</p>
+          <p className="text-gray-300 text-xs leading-relaxed">Have a question or need help? Reach out to our support team and we&apos;ll get back to you as soon as possible.</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
@@ -191,13 +218,7 @@ const Footer = () => {
               <PolicyTooltip policyKey="privacy" />
               <PolicyTooltip policyKey="terms" />
               <PolicyTooltip policyKey="cookie" />
-              <Link
-                to="/contact"
-                className="group relative hover:text-white transition-colors duration-300"
-              >
-                <span className="relative z-10">Contact Us</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </Link>
+              <ContactTooltip />
             </div>
             <div className="text-center md:text-right">
               <div className="text-gray-400 text-sm mb-2">
