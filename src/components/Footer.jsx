@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 const POLICY_CONTENT = {
   privacy: {
     title: "Privacy Policy",
-    year: 2026,
+    year: CURRENT_YEAR,
     body: "We collect only the information needed to match you with jobs. Your data is never sold to third parties. You can request deletion of your account and data at any time by contacting us.",
   },
   terms: {
     title: "Terms of Service",
-    year: 2026,
+    year: CURRENT_YEAR,
     body: "Effective as of 2026. By using JobPortal you agree to use the platform lawfully. Job listings must be genuine. We reserve the right to remove content or accounts that violate these terms.",
   },
   cookie: {
     title: "Cookie Policy",
-    year: 2026,
+    year: CURRENT_YEAR,
     body: "We use essential cookies to keep you logged in and remember your preferences. No third-party tracking or advertising cookies are used.",
   },
 };
