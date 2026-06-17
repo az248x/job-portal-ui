@@ -1,24 +1,29 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 const POLICY_CONTENT = {
   privacy: {
     title: "Privacy Policy",
+    year: CURRENT_YEAR,
     body: "We collect only the information needed to match you with jobs. Your data is never sold to third parties. You can request deletion of your account and data at any time by contacting us.",
   },
   terms: {
     title: "Terms of Service",
+    year: CURRENT_YEAR,
     body: "Effective as of 2026. By using JobPortal you agree to use the platform lawfully. Job listings must be genuine. We reserve the right to remove content or accounts that violate these terms.",
   },
   cookie: {
     title: "Cookie Policy",
+    year: CURRENT_YEAR,
     body: "We use essential cookies to keep you logged in and remember your preferences. No third-party tracking or advertising cookies are used.",
   },
 };
 
 const PolicyTooltip = ({ policyKey }) => {
   const [visible, setVisible] = useState(false);
-  const { title, body } = POLICY_CONTENT[policyKey];
+  const { title, year, body } = POLICY_CONTENT[policyKey];
 
   return (
     <div
@@ -34,6 +39,7 @@ const PolicyTooltip = ({ policyKey }) => {
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-gray-800 border border-gray-700 rounded-xl p-4 shadow-xl z-50 text-left pointer-events-none">
           <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-700"></div>
           <p className="text-white font-semibold text-sm mb-1">{title}</p>
+          <p className="text-gray-500 text-xs mb-2">Last updated: {year}</p>
           <p className="text-gray-300 text-xs leading-relaxed">{body}</p>
         </div>
       )}
