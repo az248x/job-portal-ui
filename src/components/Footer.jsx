@@ -8,7 +8,7 @@ const POLICY_CONTENT = {
   },
   terms: {
     title: "Terms of Service",
-    body: "By using JobPortal you agree to use the platform lawfully. Job listings must be genuine. We reserve the right to remove content or accounts that violate these terms.",
+    body: "Effective as of 2026. By using JobPortal you agree to use the platform lawfully. Job listings must be genuine. We reserve the right to remove content or accounts that violate these terms.",
   },
   cookie: {
     title: "Cookie Policy",
